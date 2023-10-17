@@ -14,7 +14,7 @@ const config: NuxtConfig = {
 
   runtimeConfig: {
     public: {
-      API: process.env.NUXT_PUBLIC_API_URL,
+      baseURL: process.env.NUXT_PUBLIC_API_URL,
     },
   },
 
@@ -26,19 +26,37 @@ const config: NuxtConfig = {
     'nuxt-headlessui',
     '@vueuse/nuxt',
     '@nuxtjs/device',
+    'nuxt-swiper',
+    '@vee-validate/nuxt',
   ],
 
-  plugins: ['@/plugins/composition-api', '@/plugins/axios-accessor'],
+  veeValidate: {
+    // disable or enable auto imports
+    autoImports: true,
+    // Use different names for components
+    componentNames: {
+      Form: 'VeeForm',
+      Field: 'VeeField',
+      FieldArray: 'VeeFieldArray',
+      ErrorMessage: 'VeeErrorMessage',
+    },
+  },
 
-  css: [],
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
 
-  components: [],
+  plugins: ['@/plugins/axios'],
 
   imports: {
     dirs: [resolve('./stores'), '~/stores'],
   },
 
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxt/typescript-build', 'nuxt-vite', 'nuxt-windicss'],
 }
 
 export default config
