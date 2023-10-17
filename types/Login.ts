@@ -1,8 +1,7 @@
 export interface LoginType {
-  user: object
-  isAuthinticated: boolean
-  errorMessage: string
-  profile: object
+  userData: object | null
+  isLoggedIn: boolean
+  errMsg: string
 }
 
 export interface LoginFormDataType {
@@ -11,4 +10,9 @@ export interface LoginFormDataType {
   device_os: string
   device_type: string
   uniq_device_id: string
+}
+
+export interface LoginFormInput {
+  email: string
+  password: string
 }
