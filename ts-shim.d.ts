@@ -1,10 +1,13 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { NuxtApp } from 'nuxt/schema'
 
 declare module 'vue/types/vue' {
   interface Vue {
     $axios: NuxtAxiosInstance
   }
 }
+
+declare function useNuxtApp(): NuxtApp
 
 declare module '@nuxt/types' {
   interface NuxtAppOptions {
